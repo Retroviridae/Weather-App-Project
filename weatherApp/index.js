@@ -14,38 +14,50 @@
 const longForm = document.querySelector('#longitude')
 const latForm = document.querySelector('#latitude')
 const realForm = document.querySelector('#form_location')
+const body = document.querySelector('#mainBody')
+// console.log(body)
 // console.log(longForm)
 // console.log(latForm)
 // console.log(realForm)
 realForm.addEventListener('submit',(e)=>{
     e.preventDefault()
-    locationInput(e.target)
+    getWeather(longForm.value,latForm.value)
 })
-function locationInput(target){
-    // console.log(target)
-    console.log(longForm.value)
-    console.log(latForm.value)
-    console.log(typeof(longForm.value))
-    console.log(typeof(latForm.value))
-    // const longInt = parseFloat(longForm.value)
-    // const latInt = parseFloat(latForm.value)
-    // console.log(longInt)
-    // console.log(latInt)
-    // console.log(typeof(longInt))
-    // console.log(typeof(latInt))
-    // getInfo(longForm.value,latForm.value)
 
-
-    // console.log(longInt)
-    // console.log(typeof(longInt))
-    // getInfo(longInt,latInt)
-}
-function getInfo (long,lat){
+function getWeather (long,lat){
     fetch(`https://www.7timer.info/bin/api.pl?lon=${long}&lat=${lat}&product=civil&output=json`)
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(data => makeCards(data))
 }
-// getInfo('-97.8','30.3')
+
+function makeCards (weatherObj){
+    // console.log(weatherObj)
+    // console.log(weatherObj.dataseries)
+    const weatherArr = weatherObj.dataseries
+    // console.log(weatherArr)
+    // console.log(weatherObj.dataseries[0])
+    // console.log(weatherObj.dataseries[0].rh2m)
+    weatherArr.forEach((e)=>{
+        cardMake(e)
+    })
+    function cardMake (e){
+        const card = document.createElement('card')
+        for (key in e){
+            const ul = document.createElement('ul')
+            ul.textContent = `${key}: ${e[key]}`
+            card.appendChild(ul)
+        }
+        // const dataList = document.createElement('ul')
+        // card.setAttribute('id','timepoint card')
+        // dataList.textContent = `Relative humidity: ${weatherObj.dataseries[0].rh2m}`
+        // card.appendChild(dataList)
+        body.appendChild(card)
+    }
+}
+// getWeather(-97.7,30.3)
+
+
+// getWeather('-97.7','30.3')
 // -97.743
 // 30.267
 // getInfo(-97.743,30.267)

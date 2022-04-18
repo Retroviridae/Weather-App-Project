@@ -30,11 +30,13 @@ function getWeather (long,lat){
     .then(data => makeCards(data))
 }
 
+
 function makeCards (weatherObj){
     // console.log(weatherObj)
     // console.log(weatherObj.dataseries)
     const weatherArr = weatherObj.dataseries
     // console.log(weatherArr)
+    console.log(weatherArr)
     // console.log(weatherObj.dataseries[0])
     // console.log(weatherObj.dataseries[0].rh2m)
     weatherArr.forEach((e)=>{

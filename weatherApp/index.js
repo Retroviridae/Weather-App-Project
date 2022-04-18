@@ -14,17 +14,25 @@ realForm.addEventListener('submit',(e)=>{
 })
 
 function getWeather (long,lat){
-    fetch(`https://www.7timer.info/bin/api.pl?lon=${long}&lat=${lat}&product=civil&output=json`)
+    fetch(`https://weatherdbi.herokuapp.com/data/weather/austin`)
     .then(resp => resp.json())
     .then(data => makeCards(data))
 }
 
 
 function makeCards (weatherObj){
-
+    console.log(weatherObj)
     const weatherArray = weatherObj.dataseries
+    // const filterArray = weatherArray.filter(obj => obj.timepoint <= 21)
+    const dayOneArray = weatherArray.slice(0,7)
+    const dayTwoArray = weatherArray.slice(7,14)
+    
 
-    console.log(weatherArray)
+    // console.log(weatherArray)
+    // console.log(filterArray)
+    console.log(dayOneArray)
+    console.log(dayTwoArray)
+
     weatherArray.forEach((weatherTimePoint) => {
         const card = document.createElement('card')
         for (key in weatherTimePoint){
@@ -35,7 +43,7 @@ function makeCards (weatherObj){
         body.appendChild(card)
     })
 }
-
+getWeather('-97.7','30.3')
 
 // fetch('http://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=civil&output=json')
 // .then(resp => resp.json())

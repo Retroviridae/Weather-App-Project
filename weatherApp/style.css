@@ -27,3 +27,7 @@
     height: 10em;
 }
 
+#forecast_card_template {
+    display: none;
+}
+

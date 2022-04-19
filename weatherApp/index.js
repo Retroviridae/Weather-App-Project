@@ -103,7 +103,11 @@ function makeNewCard(weatherDayObject) {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
-        forecastMouseover.querySelector(".mouseover-celsius").textContent ="Min C:" + weatherDayObject.min_temp.c + "," + "Max C:" + weatherDayObject.max_temp.c;
+        if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
+            forecastMouseover.querySelector(".mouseover-celsius").textContent = "Min C:" + weatherDayObject.min_temp.c + "," + "Max C:" + weatherDayObject.max_temp.c;
+        }else if (newForecastCard.querySelector(".card-low").textContent == "Min Temp C:" + weatherDayObject.min_temp.c){
+            forecastMouseover.querySelector(".mouseover-celsius").textContent = "Min F:" + weatherDayObject.min_temp.f + "," + "Max F:" + weatherDayObject.max_temp.f;
+        }
     })
     newForecastCard.addEventListener("click", () => {
         //switch between f and c
@@ -119,4 +123,4 @@ function makeNewCard(weatherDayObject) {
 
 }
 
-// getWeather('denver');
+getWeather('denver');

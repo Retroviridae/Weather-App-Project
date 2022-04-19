@@ -10,6 +10,7 @@ fetch("http://localhost:3000/previousSearches")
     .then(resp => resp.json())
     .then(previousSearches => {
         searchedCities = [...previousSearches, ...searchedCities]; //in case search is made before fetch resolves, append at end
+        renderSearches(searchedCities);
     })
 
 form.addEventListener('submit',(e)=>{
@@ -32,8 +33,22 @@ form.addEventListener('submit',(e)=>{
         })
     })
         .then(resp => resp.json())
-        .then(json => console.log(json));
+        .then(addedSearch => {
+            searchedCities = [...searchedCities, addedSearch];
+            renderSearches(searchedCities);
+        });
 })
+
+function renderSearches(searchedItemsList) {
+    const searchedDOMList = document.querySelector("#past_searches");
+    searchedDOMList.innerHTML = ""; //remove old list of searches
+
+    searchedItemsList.forEach((searchedItem) => {
+        newSearchElement = document.createElement("li");
+        newSearchElement.textContent = searchedItem.search;
+        searchedDOMList.append(newSearchElement);
+    })
+}
 
 function getWeather (city){
     fetch(`https://weatherdbi.herokuapp.com/data/weather/${city}`)

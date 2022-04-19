@@ -1,8 +1,16 @@
 {
   "previousSearches": [
     {
-      "search": {},
+      "search": "DC",
       "id": 1
+    },
+    {
+      "search": "Seattle",
+      "id": 2
+    },
+    {
+      "search": "America",
+      "id": 3
     }
   ]
 }

@@ -17,7 +17,9 @@ function getWeather (city){
     fetch(`https://weatherdbi.herokuapp.com/data/weather/${city}`)
     .then(resp => resp.json())
     .then(data => referenceData(data))
-    console.log(city)
+    const header = document.querySelector('#Header')
+    const capCity = city.charAt(0).toUpperCase() + city.slice(1)
+    header.textContent = capCity + " Forecast"
 }
 
 function referenceData(data){
@@ -31,8 +33,8 @@ function makeNewCard(weatherDayObject) {
     const newForecastCard = forecastCardTemplate.cloneNode(deep=true);
     newForecastCard.id = "";
     newForecastCard.querySelector(".card-dayofweek").textContent = weatherDayObject.day;
-    newForecastCard.querySelector(".card-low").textContent = weatherDayObject.min_temp.f;
-    newForecastCard.querySelector(".card-high").textContent = weatherDayObject.max_temp.f;
+    newForecastCard.querySelector(".card-low").textContent = "Min Temp F:" + weatherDayObject.min_temp.f;
+    newForecastCard.querySelector(".card-high").textContent = "Max Temp F:" + weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
     newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
     forecastWeek.append(newForecastCard);
@@ -51,7 +53,7 @@ function makeNewCard(weatherDayObject) {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
-        forecastMouseover.querySelector(".mouseover-celsius").textContent = weatherDayObject.min_temp.c + "," + weatherDayObject.max_temp.c;
+        forecastMouseover.querySelector(".mouseover-celsius").textContent ="Min C:" + weatherDayObject.min_temp.c + "," + "Max C:" + weatherDayObject.max_temp.c;
     })
 
 }

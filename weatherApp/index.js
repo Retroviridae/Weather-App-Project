@@ -1,13 +1,15 @@
 const forecastWeek = document.querySelector(".forecast-week")
 const forecastCardTemplate = document.querySelector("#forecast_card_template")
-const forecastMouseover = document.querySelector("#forecast_mouseover"
+const forecastMouseover = document.querySelector("#forecast_mouseover")
+const form = document.querySelector('#form_location')
+
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
-    console.log(e.target)
+    // console.log(e.target)
     const city = document.querySelector('#city')
-    console.log(city)
-    console.log(city.value)
+    // console.log(city)
+    // console.log(city.value)
     getWeather(city.value)
 })
 

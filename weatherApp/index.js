@@ -1,7 +1,6 @@
 const forecastWeek = document.querySelector(".forecast-week")
 const forecastCardTemplate = document.querySelector("#forecast_card_template")
-const form = document.querySelector('#form_location')
-// console.log(form)
+const forecastMouseover = document.querySelector("#forecast_mouseover"
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -49,7 +48,24 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector(".card-low").textContent = weatherDayObject.min_temp.f;
     newForecastCard.querySelector(".card-high").textContent = weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
+    newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
     forecastWeek.append(newForecastCard);
+  
+    //add hover event listener to card
+    newForecastCard.addEventListener("mouseenter", () => {
+        forecastMouseover.style.display = "block";
+    })
+
+    newForecastCard.addEventListener("mouseleave", () => {
+        forecastMouseover.style.display = "none";
+    })
+
+    newForecastCard.addEventListener("mouseover", (event) => {
+        //move mouseover div to mouse
+        forecastMouseover.style.left = (event.clientX) + "px";
+        forecastMouseover.style.top = (event.clientY) + "px";
+        forecastMouseover.querySelector(".mouseover-celsius").textContent = weatherDayObject.min_temp.c + "," + weatherDayObject.max_temp.c;
+    })
 
 }
 

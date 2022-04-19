@@ -31,3 +31,20 @@
     display: none;
 }
 
+.forecast-mouseover {
+    z-index: 1;
+    display:none;
+    position:fixed;
+    overflow:hidden;
+    text-align: center;
+    border: grey solid 1px;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 3px 4px #e04b52; 
+}
+
+.forecast-mouseover:hover {
+    display:block;
+
+}
+

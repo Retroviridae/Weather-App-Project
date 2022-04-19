@@ -88,7 +88,7 @@ function makeNewCard(weatherDayObject) {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
-
+        forecastMouseover.querySelector(".mouseover-celsius").textContent = weatherDayObject.min_temp.c + "," + weatherDayObject.max_temp.c;
     })
 
 }

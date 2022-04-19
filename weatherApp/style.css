@@ -1,5 +1,10 @@
-
-
+/* body {
+    color: #eee;
+    background: #121212;
+  } */
+  body a {
+    color: #809fff;
+  }
 #forecast {
     display: inline-flex;
     flex-direction: row;

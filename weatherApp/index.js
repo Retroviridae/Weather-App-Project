@@ -23,11 +23,13 @@ function getWeather (city){
 }
 
 function referenceData(data){
+    console.log(data.currentConditions)
     const upcomingArr = data.next_days
     upcomingArr.forEach((e)=>{
         makeNewCard(e)
     }) 
 }
+
 
 function makeNewCard(weatherDayObject) {
     const newForecastCard = forecastCardTemplate.cloneNode(deep=true);
@@ -55,7 +57,18 @@ function makeNewCard(weatherDayObject) {
         forecastMouseover.style.top = (event.clientY) + "px";
         forecastMouseover.querySelector(".mouseover-celsius").textContent ="Min C:" + weatherDayObject.min_temp.c + "," + "Max C:" + weatherDayObject.max_temp.c;
     })
+    newForecastCard.addEventListener("click", () => {
+        //switch between f and c
+        if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
+            newForecastCard.querySelector(".card-low").textContent = "Min Temp C:" + weatherDayObject.min_temp.c
+            newForecastCard.querySelector(".card-high").textContent ="Max Temp C:" + weatherDayObject.max_temp.c
+        }
+        else if (newForecastCard.querySelector(".card-low").textContent == "Min Temp C:" + weatherDayObject.min_temp.c){
+            newForecastCard.querySelector(".card-low").textContent = "Min Temp F:" + weatherDayObject.min_temp.f
+            newForecastCard.querySelector(".card-high").textContent ="Max Temp F:" + weatherDayObject.max_temp.f
+        }
+    })
 
 }
 
-getWeather('denver');
+// getWeather('denver');

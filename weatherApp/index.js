@@ -47,6 +47,11 @@ function renderSearches(searchedItemsList) {
         newSearchElement = document.createElement("li");
         newSearchElement.textContent = searchedItem.search;
         searchedDOMList.append(newSearchElement);
+
+        //clicking on item searches for it again
+        newSearchElement.addEventListener("click", (event) => {
+            getWeather(event.target.textContent);
+        })
     })
 }
 

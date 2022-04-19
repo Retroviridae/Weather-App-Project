@@ -9,6 +9,7 @@ const body = document.querySelector('#mainBody')
 
 const forecastWeek = document.querySelector(".forecast-week")
 const forecastCardTemplate = document.querySelector("#forecast_card_template")
+const forecastMouseover = document.querySelector("#forecast_mouseover")
 
 
 realForm.addEventListener('submit',(e)=>{
@@ -71,7 +72,24 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector(".card-low").textContent = weatherDayObject.min_temp.f;
     newForecastCard.querySelector(".card-high").textContent = weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
+    newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
     forecastWeek.append(newForecastCard);
+  
+    //add hover event listener to card
+    newForecastCard.addEventListener("mouseenter", () => {
+        forecastMouseover.style.display = "block";
+    })
+
+    newForecastCard.addEventListener("mouseleave", () => {
+        forecastMouseover.style.display = "none";
+    })
+
+    newForecastCard.addEventListener("mouseover", (event) => {
+        //move mouseover div to mouse
+        forecastMouseover.style.left = (event.clientX) + "px";
+        forecastMouseover.style.top = (event.clientY) + "px";
+
+    })
 
 }
 

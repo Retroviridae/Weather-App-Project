@@ -16,10 +16,7 @@ fetch("http://localhost:3000/previousSearches")
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     const city = e.target.querySelector('#city')
-    const oldCards = document.querySelectorAll('.forecast-card')
-    oldCards.forEach(
-        (e)=>{e.remove()
-    })
+
     getWeather(city.value)
 
     //add newly searched city to database
@@ -56,6 +53,12 @@ function renderSearches(searchedItemsList) {
 }
 
 function getWeather (city){
+    //remove old cards
+    const oldCards = document.querySelectorAll('.forecast-card')
+    oldCards.forEach(
+        (e)=>{e.remove()
+    })
+    
     fetch(`https://weatherdbi.herokuapp.com/data/weather/${city}`)
     .then(resp => resp.json())
     .then(data => referenceData(data))
@@ -63,6 +66,8 @@ function getWeather (city){
     const capCity = city.charAt(0).toUpperCase() + city.slice(1)
 
     header.textContent = capCity + " Forecast"
+
+
 }
 
 function referenceData(data){

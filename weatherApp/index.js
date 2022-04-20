@@ -14,6 +14,7 @@ fetch("http://localhost:3000/previousSearches")
         renderSearches(searchedCities);
     })
 btn.addEventListener('click',(e)=>{
+    e.preventDefault()
     getCity(e.target)
 })
 function getCity (){

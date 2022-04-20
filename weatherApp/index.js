@@ -46,6 +46,7 @@ form.addEventListener('submit',(e)=>{
 })
 
 function renderSearches(searchedItemsList) {
+    getWeather(searchedItemsList.slice(-1)[0].search)
     const searchedDOMList = document.querySelector("#past_searches");
     searchedDOMList.innerHTML = ""; //remove old list of searches
     const fiveRecentSearches = searchedItemsList.slice(-5)
@@ -134,4 +135,4 @@ function makeNewCard(weatherDayObject) {
 
 }
 
-getWeather('denver');
+

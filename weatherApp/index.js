@@ -3,6 +3,7 @@ const forecastCardTemplate = document.querySelector("#forecast_card_template")
 const forecastMouseover = document.querySelector("#forecast_mouseover")
 const form = document.querySelector('#form_location')
 const btn = document.querySelector('#get-location')
+const temperatureDiv = document.querySelector("#temperature-div")
 
 let searchedCities = [];
 
@@ -96,20 +97,20 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector(".card-high").textContent = "Max Temp F:" + weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
     newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
-    const tempDiv = document.querySelectorAll('#temperature-div')
     forecastWeek.append(newForecastCard);
     
   
     //add hover event listener to card
-    newForecastCard.addEventListener("mouseenter", () => {
+    temperatureDiv.addEventListener("mouseenter", () => {
+        console.log("test");
         forecastMouseover.style.display = "block";
     })
 
-    newForecastCard.addEventListener("mouseleave", () => {
+    temperatureDiv.addEventListener("mouseleave", () => {
         forecastMouseover.style.display = "none";
     })
 
-    newForecastCard.addEventListener("mouseover", (event) => {
+    temperatureDiv.addEventListener("mouseover", (event) => {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
@@ -119,7 +120,7 @@ function makeNewCard(weatherDayObject) {
             forecastMouseover.querySelector(".mouseover-celsius").textContent = "Min F:" + weatherDayObject.min_temp.f + "," + "Max F:" + weatherDayObject.max_temp.f;
         }
     })
-    newForecastCard.addEventListener("click", () => {
+    temperatureDiv.addEventListener("click", () => {
         //switch between f and c
         if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
             newForecastCard.querySelector(".card-low").textContent = "Min Temp C:" + weatherDayObject.min_temp.c

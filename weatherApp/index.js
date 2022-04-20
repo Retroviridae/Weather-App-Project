@@ -2,6 +2,7 @@ const forecastWeek = document.querySelector(".forecast-week")
 const forecastCardTemplate = document.querySelector("#forecast_card_template")
 const forecastMouseover = document.querySelector("#forecast_mouseover")
 const form = document.querySelector('#form_location')
+const btn = document.querySelector('#get-location')
 
 let searchedCities = [];
 
@@ -12,7 +13,14 @@ fetch("http://localhost:3000/previousSearches")
         searchedCities = [...previousSearches, ...searchedCities]; //in case search is made before fetch resolves, append at end
         renderSearches(searchedCities);
     })
-
+btn.addEventListener('click',(e)=>{
+    getCity(e.target)
+})
+function getCity (){
+    fetch('https://ip-fast.com/api/ip/?format=json&location=True')
+    .then(resp => resp.json())
+    .then(data => getWeather(data.city))
+}
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     const city = e.target.querySelector('#city')

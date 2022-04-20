@@ -41,10 +41,9 @@ function renderSearches(searchedItemsList) {
     searchedDOMList.innerHTML = ""; //remove old list of searches
     const fiveRecentSearches = searchedItemsList.slice(-5)
 
-
     fiveRecentSearches.forEach((searchedItem) => {
         newSearchElement = document.createElement("li");
-        newSearchElement.textContent = searchedItem.search;
+        newSearchElement.textContent = searchedItem.search.charAt(0).toUpperCase() + searchedItem.search.slice(1);
         searchedDOMList.append(newSearchElement);
 
         //clicking on item searches for it again

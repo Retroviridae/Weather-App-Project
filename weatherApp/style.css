@@ -46,6 +46,7 @@ body {
     padding: 1rem;
     margin: 1rem;
     box-shadow: 3px 4px #e04b52; 
+    background-color: #121212;
 }
 
 .forecast-mouseover:hover {

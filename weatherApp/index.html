@@ -9,12 +9,14 @@
   </head>
   <body id="mainBody">
     <form action="" method="get" id="form_location" class="form-location">
+
       <div class="form-long">
         <label for="city">Enter your location: </label>
         <input type="city" name="city" id="city" required>
         <div class="form-location">
           <input type="submit" value="Submit">
         </div>
+      </div>
       </form>
       <button id="get-location">
         Get location
@@ -31,7 +33,7 @@
         <div class="forecast-card" id="forecast_card_template">
           <h3 class="card-dayofweek">Today</h3>
           <img src=""/>
-          <div id="temperature-div">
+          <div class="temperature-div">
             <span class="card-low">Low Temperature</span><br/>
             <span class="card-high">High Temperature</span><br/>
           </div>
@@ -44,7 +46,10 @@
     </div>
 
     <div class="forecast-mouseover" id="forecast_mouseover">
-      <div class="mouseover-celsius">Temperature Celsius</div>
+      <div class="mouseover-celsius">
+        <div class="mouseover-high">template high celsius</div>
+        <div class="mouseover-low">template low celsius</div>
+      </div>
     </div>
       
     <script defer src="index.js"></script>

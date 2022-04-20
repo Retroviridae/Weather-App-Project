@@ -98,30 +98,32 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector(".card-high").textContent = "Max Temp F:" + weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
     newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
-    const tempDiv = document.querySelectorAll('#temperature-div')
     forecastWeek.append(newForecastCard);
     
+    const temperatureDiv = newForecastCard.querySelector(".temperature-div")
   
     //add hover event listener to card
-    newForecastCard.addEventListener("mouseenter", () => {
+    temperatureDiv.addEventListener("mouseenter", () => {
         forecastMouseover.style.display = "block";
     })
 
-    newForecastCard.addEventListener("mouseleave", () => {
+    temperatureDiv.addEventListener("mouseleave", () => {
         forecastMouseover.style.display = "none";
     })
 
-    newForecastCard.addEventListener("mouseover", (event) => {
+    temperatureDiv.addEventListener("mouseover", (event) => {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
         if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
-            forecastMouseover.querySelector(".mouseover-celsius").textContent = "Min C:" + weatherDayObject.min_temp.c + "," + "Max C:" + weatherDayObject.max_temp.c;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min C:" + weatherDayObject.min_temp.c;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max C:" + weatherDayObject.max_temp.c;
         }else if (newForecastCard.querySelector(".card-low").textContent == "Min Temp C:" + weatherDayObject.min_temp.c){
-            forecastMouseover.querySelector(".mouseover-celsius").textContent = "Min F:" + weatherDayObject.min_temp.f + "," + "Max F:" + weatherDayObject.max_temp.f;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min F:" + weatherDayObject.min_temp.f;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max F:" + weatherDayObject.max_temp.f;
         }
     })
-    newForecastCard.addEventListener("click", () => {
+    temperatureDiv.addEventListener("click", () => {
         //switch between f and c
         if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
             newForecastCard.querySelector(".card-low").textContent = "Min Temp C:" + weatherDayObject.min_temp.c

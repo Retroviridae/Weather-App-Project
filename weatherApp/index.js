@@ -3,7 +3,6 @@ const forecastCardTemplate = document.querySelector("#forecast_card_template")
 const forecastMouseover = document.querySelector("#forecast_mouseover")
 const form = document.querySelector('#form_location')
 const btn = document.querySelector('#get-location')
-const temperatureDiv = document.querySelector("#temperature-div")
 
 let searchedCities = [];
 
@@ -99,6 +98,7 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
     forecastWeek.append(newForecastCard);
     
+    const temperatureDiv = newForecastCard.querySelector(".temperature-div")
   
     //add hover event listener to card
     temperatureDiv.addEventListener("mouseenter", () => {

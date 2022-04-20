@@ -19,6 +19,30 @@
     {
       "search": "Denver",
       "id": 5
+    },
+    {
+      "search": "austin",
+      "id": 6
+    },
+    {
+      "search": "phoenix",
+      "id": 7
+    },
+    {
+      "search": "dallas",
+      "id": 8
+    },
+    {
+      "search": "austin",
+      "id": 9
+    },
+    {
+      "search": "denver",
+      "id": 10
+    },
+    {
+      "search": "phoenix",
+      "id": 11
     }
   ]
 }

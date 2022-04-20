@@ -39,8 +39,10 @@ form.addEventListener('submit',(e)=>{
 function renderSearches(searchedItemsList) {
     const searchedDOMList = document.querySelector("#past_searches");
     searchedDOMList.innerHTML = ""; //remove old list of searches
+    const fiveRecentSearches = searchedItemsList.slice(-5)
 
-    searchedItemsList.forEach((searchedItem) => {
+
+    fiveRecentSearches.forEach((searchedItem) => {
         newSearchElement = document.createElement("li");
         newSearchElement.textContent = searchedItem.search;
         searchedDOMList.append(newSearchElement);
@@ -71,7 +73,7 @@ function getWeather (city){
 }
 
 function referenceData(data){
-    console.log(data.currentConditions)
+    // console.log(data.currentConditions)
     const upcomingArr = data.next_days
     upcomingArr.forEach((e)=>{
         makeNewCard(e)
@@ -87,6 +89,7 @@ function makeNewCard(weatherDayObject) {
     newForecastCard.querySelector(".card-high").textContent = "Max Temp F:" + weatherDayObject.max_temp.f;
     newForecastCard.querySelector(".card-comment").textContent = weatherDayObject.comment;
     newForecastCard.querySelector("img").src = weatherDayObject.iconURL;
+    const tempDiv = document.querySelectorAll('#temperature-div')
     forecastWeek.append(newForecastCard);
     
   

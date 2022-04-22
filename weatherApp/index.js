@@ -85,6 +85,10 @@ function getWeather (city){
 
 function referenceData(data){
     // console.log(data.currentConditions)
+    const oldCards = document.querySelectorAll('.forecast-card')
+    oldCards.forEach(
+        (e)=>{e.remove()
+    })
     const upcomingArr = data.next_days
     upcomingArr.forEach((e)=>{
         makeNewCard(e)

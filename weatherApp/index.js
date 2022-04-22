@@ -105,6 +105,13 @@ function makeNewCard(weatherDayObject) {
     //add hover event listener to card
     temperatureDiv.addEventListener("mouseenter", () => {
         forecastMouseover.style.display = "block";
+        if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min C:" + weatherDayObject.min_temp.c;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max C:" + weatherDayObject.max_temp.c;
+        }else if (newForecastCard.querySelector(".card-low").textContent == "Min Temp C:" + weatherDayObject.min_temp.c){
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min F:" + weatherDayObject.min_temp.f;
+            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max F:" + weatherDayObject.max_temp.f;
+        }
     })
 
     temperatureDiv.addEventListener("mouseleave", () => {
@@ -115,13 +122,7 @@ function makeNewCard(weatherDayObject) {
         //move mouseover div to mouse
         forecastMouseover.style.left = (event.clientX) + "px";
         forecastMouseover.style.top = (event.clientY) + "px";
-        if (newForecastCard.querySelector(".card-low").textContent == "Min Temp F:" + weatherDayObject.min_temp.f){
-            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min C:" + weatherDayObject.min_temp.c;
-            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max C:" + weatherDayObject.max_temp.c;
-        }else if (newForecastCard.querySelector(".card-low").textContent == "Min Temp C:" + weatherDayObject.min_temp.c){
-            forecastMouseover.querySelector(".mouseover-celsius .mouseover-low").textContent = "Min F:" + weatherDayObject.min_temp.f;
-            forecastMouseover.querySelector(".mouseover-celsius .mouseover-high").textContent = "Max F:" + weatherDayObject.max_temp.f;
-        }
+
     })
     temperatureDiv.addEventListener("click", () => {
         //switch between f and c

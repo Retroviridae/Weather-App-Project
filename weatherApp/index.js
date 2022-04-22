@@ -26,7 +26,7 @@ form.addEventListener('submit',(e)=>{
     e.preventDefault()
     const city = e.target.querySelector('#city')
 
-    getWeather(city.value)
+    // getWeather(city.value)
 
     //add newly searched city to database
     fetch("http://localhost:3000/previousSearches", {
@@ -43,6 +43,8 @@ form.addEventListener('submit',(e)=>{
             searchedCities = [...searchedCities, addedSearch];
             renderSearches(searchedCities);
         });
+    e.target.reset()
+
 })
 
 function renderSearches(searchedItemsList) {
